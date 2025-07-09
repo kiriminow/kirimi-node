@@ -1,10 +1,14 @@
 {
   "name": "kirimi",
   "version": "0.0.2",
-  "description": "Official Kirimi Whatsapp Bot library for Node Js ",
+  "description": "Official Node.js client library for the Kirimi WhatsApp API. Send messages, handle OTP verification, and manage WhatsApp communication with ease.",
   "main": "index.js",
+  "engines": {
+    "node": ">=12.0.0"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "example": "node example.js"
   },
   "repository": {
     "type": "git",
@@ -12,17 +16,27 @@
   },
   "keywords": [
     "kirimi",
-    "bot whatsapp",
-    "whatsapp api"
+    "whatsapp",
+    "whatsapp-api",
+    "whatsapp-bot",
+    "whatsapp-client",
+    "messaging",
+    "otp",
+    "otp-verification",
+    "sms",
+    "notification",
+    "api-client",
+    "nodejs",
+    "automation",
+    "communication"
   ],
-  "author": "yolkmonday <yolkmonday@gmail.com>",
+  "author": "Ari Padrian <yolkmonday@gmail.com>",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/yolkmonday/kirimi/issues"
   },
   "homepage": "https://github.com/yolkmonday/kirimi#readme",
   "dependencies": {
-    "crypto": "^1.0.1",
     "request": "^2.88.2",
     "request-promise-native": "^1.0.9"
   }
