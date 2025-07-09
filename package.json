@@ -1,6 +1,6 @@
 {
   "name": "kirimi",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Official Node.js client library for the Kirimi WhatsApp API. Send messages, handle OTP verification, and manage WhatsApp communication with ease.",
   "main": "index.js",
   "engines": {
