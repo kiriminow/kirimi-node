@@ -37,6 +37,7 @@
   },
   "homepage": "https://github.com/yolkmonday/kirimi#readme",
   "dependencies": {
+    "form-data": "^4.0.0",
     "request": "^2.88.2",
     "request-promise-native": "^1.0.9"
   }

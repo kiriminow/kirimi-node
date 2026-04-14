@@ -9,8 +9,12 @@ Official Node.js client library for the Kirimi WhatsApp API. This library provid
 
 ## 🚀 Features
 
-- ✅ Send WhatsApp messages (text and media)
-- ✅ Generate and validate OTP codes
+- ✅ Send WhatsApp messages (text, media, file upload, fast mode)
+- ✅ Send via WABA (Meta Cloud API)
+- ✅ Generate and validate OTP codes (V1 + V2)
+- ✅ Broadcast messages to multiple recipients
+- ✅ Manage devices and contacts
+- ✅ List deposits and packages
 - ✅ Support for multiple package types (Free, Lite, Basic, Pro)
 - ✅ Promise-based API with async/await support
 - ✅ Comprehensive error handling
@@ -113,6 +117,131 @@ console.log(result);
 **Notes:**
 - OTP expires after 5 minutes
 - Each OTP can only be used once
+
+### Send Message Fast
+
+Send a message without the typing effect.
+
+```js
+const result = await client.sendMessageFast('device_id', '628123456789', 'Hello!');
+// With media
+const result = await client.sendMessageFast('device_id', '628123456789', 'See this', 'https://example.com/img.jpg');
+```
+
+### Send Message File
+
+Send a file via multipart/form-data (max 50MB). Accepts `Buffer` or `fs.ReadStream`.
+
+```js
+const fs = require('fs');
+
+// Using ReadStream
+const result = await client.sendMessageFile(
+  'device_id',
+  '628123456789',
+  fs.createReadStream('./document.pdf'),
+  { message: 'Here is your file', fileName: 'document.pdf' }
+);
+
+// Using Buffer
+const buf = fs.readFileSync('./image.png');
+const result = await client.sendMessageFile('device_id', '628123456789', buf, { fileName: 'image.png' });
+```
+
+### Send WABA Message
+
+Send a message via WhatsApp Business API (Meta Cloud API).
+
+```js
+const result = await client.sendWabaMessage('waba_device_id', '628123456789', 'Hello from WABA!');
+```
+
+### List Devices
+
+```js
+const devices = await client.listDevices();
+```
+
+### Device Status
+
+```js
+const status = await client.deviceStatus('device_id');
+const enhanced = await client.deviceStatusEnhanced('device_id');
+```
+
+### User Info
+
+```js
+const info = await client.userInfo();
+```
+
+### Save Contact
+
+```js
+await client.saveContact('628123456789', { name: 'John Doe', email: 'john@example.com' });
+```
+
+### Generate OTP (with options)
+
+```js
+// Basic (backward compatible)
+const result = await client.generateOTP('device_id', '628123456789');
+
+// With options
+const result = await client.generateOTP('device_id', '628123456789', {
+  otpLength: 6,
+  otpType: 'numeric',       // numeric | alphabetic | alphanumeric
+  customOtpMessage: 'Your OTP: {{otp}}'
+});
+```
+
+### Send OTP V2
+
+Send OTP via WABA template or device (V2 API).
+
+```js
+const result = await client.sendOtpV2('628123456789', 'device_id', {
+  method: 'device',         // device | waba
+  appName: 'MyApp',
+  customMessage: 'Your code: {{otp}}'
+});
+```
+
+### Verify OTP V2
+
+```js
+const result = await client.verifyOtpV2('628123456789', '123456');
+```
+
+### Broadcast Message
+
+Send a message to multiple recipients.
+
+```js
+// Array of phones
+const result = await client.broadcastMessage(
+  'device_id',
+  ['628111111111', '628222222222', '628333333333'],
+  'Hello everyone!',
+  { delay: 3 }  // optional: delay in seconds between sends
+);
+
+// Comma-separated string also accepted
+const result = await client.broadcastMessage('device_id', '628111111111,628222222222', 'Hi!');
+```
+
+### List Deposits
+
+```js
+const all = await client.listDeposits();
+const paid = await client.listDeposits('paid');    // paid | unpaid | expired
+```
+
+### List Packages
+
+```js
+const packages = await client.listPackages();
+```
 
 ### Health Check
 
