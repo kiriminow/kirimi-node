@@ -1,15 +1,19 @@
 {
   "name": "kirimi",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Official Node.js client library for the Kirimi WhatsApp API. Send messages, handle OTP verification, and manage WhatsApp communication with ease.",
   "main": "index.js",
   "engines": {
-    "node": ">=12.0.0"
+    "node": ">=18.0.0"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "node --test test/",
     "example": "node example.js"
   },
+  "files": [
+    "index.js",
+    "README.md"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/yolkmonday/kirimi.git"
@@ -35,10 +39,5 @@
   "bugs": {
     "url": "https://github.com/yolkmonday/kirimi/issues"
   },
-  "homepage": "https://github.com/yolkmonday/kirimi#readme",
-  "dependencies": {
-    "form-data": "^4.0.0",
-    "request": "^2.88.2",
-    "request-promise-native": "^1.0.9"
-  }
+  "homepage": "https://github.com/yolkmonday/kirimi#readme"
 }
