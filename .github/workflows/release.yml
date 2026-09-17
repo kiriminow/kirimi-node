@@ -10,6 +10,9 @@ concurrency:
 
 permissions:
   contents: write
+  # Lets npm use trusted publishing (OIDC) once a trusted publisher is
+  # configured for this package. Falls back to NPM_TOKEN until then.
+  id-token: write
 
 jobs:
   release:
